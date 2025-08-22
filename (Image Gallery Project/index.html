@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Travel Explorer – jQuery Gallery App</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Header / Navbar -->
+  <header class="app-header">
+    <div class="container header-inner">
+      <h1 class="brand">✨ Travel Explorer</h1>
+      <div class="header-actions">
+        <button id="themeToggle" class="btn ghost" aria-label="Toggle dark mode">🌗</button>
+        <a href="#" class="btn primary" id="showFavs" aria-pressed="false">⭐ Favorites</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Controls -->
+  <section class="controls container" aria-label="Gallery Controls">
+    <div class="control-row">
+      <div class="search-wrap">
+        <input type="search" id="searchInput" placeholder="Search (e.g. beach, paris, lion)…" aria-label="Search images" />
+      </div>
+
+      <div class="select-wrap">
+        <label for="categoryFilter" class="sr-only">Category</label>
+        <select id="categoryFilter" aria-label="Filter by category">
+          <option value="all">All Categories</option>
+          <option value="nature">Nature</option>
+          <option value="cities">Cities</option>
+          <option value="animals">Animals</option>
+          <option value="food">Food</option>
+          <option value="cars">Cars</option>
+        </select>
+      </div>
+
+      <div class="select-wrap">
+        <label for="sortBy" class="sr-only">Sort</label>
+        <select id="sortBy" aria-label="Sort by title">
+          <option value="az">Sort: A → Z</option>
+          <option value="za">Sort: Z → A</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery Grid -->
+  <main class="container">
+    <div id="grid" class="grid" aria-live="polite"></div>
+
+    <!-- Pagination -->
+    <nav class="pagination" aria-label="Pagination">
+      <button class="btn ghost" id="prevPage" disabled>← Prev</button>
+      <span id="pageInfo" aria-live="polite">Page 1/1</span>
+      <button class="btn ghost" id="nextPage" disabled>Next →</button>
+    </nav>
+  </main>
+
+  <!-- Lightbox Modal -->
+  <div class="modal" id="lightbox" role="dialog" aria-modal="true" aria-label="Image preview" aria-hidden="true">
+    <div class="modal-backdrop" data-close-modal></div>
+    <div class="modal-content" role="document">
+      <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+      <img id="modalImg" alt="" />
+      <div class="modal-caption">
+        <h3 id="modalTitle"></h3>
+        <p id="modalDesc"></p>
+      </div>
+      <div class="modal-nav">
+        <button id="modalPrev" class="btn ghost" aria-label="Previous image">⟨</button>
+        <button id="modalNext" class="btn ghost" aria-label="Next image">⟩</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+  <!-- Back to top -->
+  <button id="backToTop" class="back-to-top" aria-label="Back to top">↑</button>
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

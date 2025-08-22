@@ -1,0 +1,157 @@
+/* ===== CSS Variables (Light/Dark) ===== */
+:root{
+  --bg: #0b0d10;
+  --card: #14181f;
+  --text: #e9eef5;
+  --muted: #9fb0c4;
+  --primary: #5b9cff;
+  --primary-contrast: #ffffff;
+  --accent: #22d3ee;
+  --shadow: 0 10px 30px rgba(0,0,0,.25);
+  --ring: 0 0 0 3px rgba(91,156,255,.35);
+}
+html.light{
+  --bg: #f6f8fb;
+  --card: #ffffff;
+  --text: #12161c;
+  --muted: #667085;
+  --primary: #0d6efd;
+  --primary-contrast: #ffffff;
+  --accent: #06b6d4;
+  --shadow: 0 10px 24px rgba(16,24,40,.08);
+  --ring: 0 0 0 3px rgba(13,110,253,.25);
+}
+
+/* ===== Base ===== */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 20% -10%, rgba(91,156,255,.15), transparent 70%),
+              radial-gradient(900px 500px at 120% 10%, rgba(34,211,238,.12), transparent 60%),
+              var(--bg);
+}
+.container{max-width:1100px;margin:0 auto;padding:16px}
+
+/* ===== Header ===== */
+.app-header{
+  position:sticky; top:0; z-index:100;
+  background: linear-gradient(180deg, rgba(0,0,0,.25), transparent), var(--bg);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+}
+.header-inner{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.brand{margin:8px 0;font-size:22px;letter-spacing:.4px}
+.header-actions{display:flex;gap:8px}
+
+/* ===== Controls ===== */
+.controls{margin-top:6px;margin-bottom:4px}
+.control-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.search-wrap{flex:1 1 320px}
+#searchInput{
+  width:100%; padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12);
+  background: var(--card); color: var(--text); outline:none;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.06);
+}
+#searchInput:focus{box-shadow: var(--ring)}
+.select-wrap select{
+  padding:12px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12);
+  background: var(--card); color: var(--text); outline:none; min-width:160px;
+}
+
+/* ===== Buttons ===== */
+.btn{
+  padding:10px 14px; border-radius:12px; border: none; cursor:pointer; font-weight:600;
+  transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+}
+.btn.primary{background:var(--primary); color:var(--primary-contrast); box-shadow: var(--shadow)}
+.btn.primary:hover{transform:translateY(-1px)}
+.btn.ghost{background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.18)}
+.btn.ghost:hover{box-shadow: var(--shadow)}
+
+/* ===== Grid / Cards ===== */
+.grid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap:16px; margin-top:18px;
+}
+.card{
+  background: var(--card);
+  border-radius:16px; overflow:hidden; box-shadow: var(--shadow);
+  transition: transform .2s ease, box-shadow .2s ease;
+  display:flex; flex-direction:column;
+}
+.card:hover{transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.35)}
+
+.thumb-wrap{position:relative; overflow:hidden}
+.thumb{
+  width:100%; height:180px; object-fit:cover; display:block; opacity:0; transform:scale(1.04);
+  transition: opacity .4s ease, transform .4s ease;
+}
+.thumb.loaded{opacity:1; transform:scale(1)}
+.badge{
+  position:absolute; left:10px; top:10px;
+  background: rgba(0,0,0,.55); color:#fff; padding:6px 10px; border-radius:999px; font-size:12px
+}
+.fav{
+  position:absolute; right:10px; top:10px; font-size:18px; line-height:1;
+  background: rgba(0,0,0,.45); color:#fff; border:none; border-radius:999px; padding:6px 8px; cursor:pointer
+}
+.fav.active{background: #ffd166; color:#000}
+
+.card-body{padding:12px 12px 14px}
+.card-title{margin:4px 0 6px; font-size:16px}
+.card-desc{margin:0; color:var(--muted); font-size:13px; line-height:1.4}
+.card-actions{display:flex; gap:8px; margin-top:12px}
+.card .btn.small{padding:8px 10px; font-size:13px}
+
+/* ===== Pagination ===== */
+.pagination{display:flex; align-items:center; justify-content:center; gap:12px; margin:18px 0 30px}
+#pageInfo{min-width:110px; text-align:center; color:var(--muted)}
+
+/* ===== Modal (Lightbox) ===== */
+.modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center}
+.modal[aria-hidden="false"]{display:flex}
+.modal-backdrop{position:absolute; inset:0; background:rgba(0,0,0,.6)}
+.modal-content{
+  position:relative; z-index:1; width:min(92vw, 900px);
+  background: var(--card); border-radius:16px; padding:14px; box-shadow: var(--shadow);
+}
+.modal-close{
+  position:absolute; right:10px; top:10px; border:none; background:transparent;
+  color:var(--text); font-size:28px; cursor:pointer
+}
+.modal img{width:100%; max-height:70vh; object-fit:cover; border-radius:12px; animation:pop .35s ease}
+.modal-caption{margin-top:8px}
+.modal-caption h3{margin:6px 0}
+.modal-caption p{margin:0; color:var(--muted)}
+.modal-nav{display:flex; justify-content:space-between; margin-top:10px}
+@keyframes pop{from{opacity:0; transform:scale(.98)} to{opacity:1; transform:scale(1)}}
+
+/* ===== Toast ===== */
+.toast{
+  position:fixed; bottom:18px; left:50%; transform:translateX(-50%);
+  background:#111; color:#fff; padding:10px 14px; border-radius:10px; display:none; z-index:5
+}
+.toast.show{display:block; animation:fade .6s}
+@keyframes fade{from{opacity:0; transform:translate(-50%, 8px)} to{opacity:1; transform:translate(-50%, 0)}}
+
+/* ===== Back to Top ===== */
+.back-to-top{
+  position:fixed; right:16px; bottom:16px; width:44px; height:44px; border-radius:12px;
+  border:none; background:var(--primary); color:#fff; font-weight:700; display:none; cursor:pointer;
+  box-shadow: var(--shadow)
+}
+.back-to-top.show{display:block}
+
+/* ===== Utilities ===== */
+.sr-only{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+
+/* Small screens fine-tuning */
+@media (max-width:520px){
+  .thumb{height:160px}
+  .brand{font-size:18px}
+  .select-wrap select{min-width:140px}
+}
